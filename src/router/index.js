@@ -37,7 +37,6 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-
   {
     path: '/example',
     component: Layout,
@@ -56,6 +55,12 @@ export const constantRouterMap = [
         name: 'Tree',
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
+      },
+      {
+        path: 'test1',
+        name: 'test1',
+        component: () => import('@/views/test/index'),
+        meta: { title: 'test1', icon: 'example' }
       }
     ]
   },
