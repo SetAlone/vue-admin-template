@@ -61,6 +61,12 @@ export const constantRouterMap = [
         name: 'test1',
         component: () => import('@/views/test/index'),
         meta: { title: 'test1', icon: 'example' }
+      },
+      {
+        path: 'vuedrable',
+        name: 'vuedrable',
+        component: () => import('@/views/vuedrable/index'),
+        meta: { title: 'vuedrable', icon: 'example' }
       }
     ]
   },
