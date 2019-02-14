@@ -1,16 +1,54 @@
 <template>
   <div style="height: 100%; width: 100%">
     <el-row>
-      <el-col :span="6"><div>
-        <draggable :list="list" :component-data="getComponentData()" element="el-collapse" >
-          <el-collapse-item v-for="e in list" :title="e.title" :name="e.name" :key="e.name">
-            <div>{{ e.description }}</div>
-          </el-collapse-item>
-        </draggable>
-      </div>
+      <el-col :span="6">
+        <div>
+          <draggable :list="list" :component-data="getComponentData()" element="el-collapse" >
+            <el-collapse-item v-for="e in list" :title="e.title" :name="e.name" :key="e.name">
+              <div>{{ e.description }}</div>
+            </el-collapse-item>
+          </draggable>
+        </div>
       </el-col>
-      <el-col :span="6">xx4</el-col>
       <el-col :span="6">{{ list }}</el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="6">
+        <div>
+          区域1
+          <!-- 调用组件  -->
+          <draggable
+            v-model="list1"
+            :options="options"
+            element="ul"
+            @choose="choose"
+            @clone="clone"
+            @start="start"
+            @add="add"
+            @remove="remove"
+            @update="update"
+            @filter="filter"
+            @sort="sort"
+            @end="end" >
+            <li v-for="item in list1" :key="item.id" class="item">{{ item.name }}</li>
+          </draggable>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div>
+          区域2
+          <draggable
+            v-model="list2"
+            :options="options"
+            element="ul">
+            <li v-for="item in list2" :key="item.id" class="item">{{ item.name }}</li>
+            <button slot="header" @click="addPeople">Add</button>
+            <button slot="footer" @click="addPeople">Add</button>
+          </draggable>
+        </div>
+      </el-col>
+      <el-col :span="6">{{ list1 }}</el-col>
+      <el-col :span="6">list{{ list2 }}</el-col>
     </el-row>
   </div>
 </template>
@@ -25,6 +63,11 @@ export default {
     return {
       count: 0,
       activeNames: '',
+      options: {
+        group: 'people', // 同一组的不同list可以相互拖动
+        draggable: '.item',
+        sort: true
+      },
       list: [
         {
           id: 1,
@@ -44,6 +87,32 @@ export default {
           name: 'c',
           description: 'description3'
         }],
+      list1: [
+        {
+          id: 2,
+          name: 'b'
+        },
+        {
+          id: 3,
+          name: 'c'
+        },
+        {
+          id: 4,
+          name: 'd'
+        },
+        {
+          id: 5,
+          name: 'e'
+        },
+        {
+          id: 6,
+          name: 'f'
+        }
+      ],
+      list2: [{
+        id: 1,
+        name: 'a'
+      }],
       form: {
         supplier2: '',
         type: '',
@@ -110,60 +179,41 @@ export default {
         }
       }
     },
-    open2() {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.count++
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
-        })
-      }).catch(() => {
-        this.count--
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
-      })
+    end() {
+      console.log('end')
+    },
+    start() {
+      console.log('start')
     },
     add() {
-      console.log(this.form)
+      console.log('add')
     },
-    save() {
-      this.$refs['form'].validate((valid, model) => {
-        console.log(valid)
-        console.log(model)
-      })
+    remove() {
+      console.log('remove')
     },
-
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+    update() {
+      console.log('update')
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    choose() {
+      console.log('choose')
     },
-    removeDomain(item) {
-      var index = this.dynamicValidateForm.domains.indexOf(item)
-      if (index !== -1) {
-        this.dynamicValidateForm.domains.splice(index, 1)
-      }
+    sort() {
+      console.log('sort')
     },
-    addDomain() {
-      this.dynamicValidateForm.domains.push({
-        value: '',
-        key: Date.now()
-      })
+    filter() {
+      console.log('filter')
+    },
+    clone() {
+      console.log('clone')
+    },
+    addPeople() {
+      console.log('addPeople')
     }
   }
 }
 </script>
+<style scoped>
+  .item {
+
+  }
+</style>
