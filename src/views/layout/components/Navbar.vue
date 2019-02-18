@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
-    <breadcrumb />
+    <breadcrumb class="breadcrumb-container"/>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
@@ -60,6 +60,9 @@ export default {
     height: 50px;
     float: left;
     padding: 0 10px;
+  }
+  .breadcrumb-container{
+    float: left;
   }
   .screenfull {
     position: absolute;
