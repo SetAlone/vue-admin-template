@@ -83,6 +83,18 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/guide',
+    component: Layout,
+    children: [
+      {
+        path: 'guide',
+        name: 'guide',
+        component: () => import('@/views/guide/index'),
+        meta: { title: 'guide', icon: 'form' }
+      }
+    ]
+  },
 
   {
     path: '/nested',
