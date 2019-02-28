@@ -9,7 +9,7 @@ const steps = [
   },
   {
     element: '.breadcrumb-container',
-    stageBackground: '#00ff00', // This will override the one set in driver
+    stageBackground: '#ffffff', // This will override the one set in driver
     popover: { // There will be no popover if empty or not given
       className: 'popover-class', // className to wrap this specific step popover in addition to the general className in Driver options
       title: 'Breadcrumb', // Title on the popover
@@ -25,9 +25,9 @@ const steps = [
     onPrevious: () => {}
   },
   {
-    element: '.screenfull',
+    element: '.router-link-active',
     popover: {
-      title: 'Screenfull',
+      title: 'router-link-active',
       description: 'Bring the page into fullscreen',
       position: 'left'
     }
